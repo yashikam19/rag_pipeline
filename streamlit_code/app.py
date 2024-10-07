@@ -3,7 +3,7 @@ import requests
 from app_helper import text_to_speech, preprocess_text
 
 # Base URL for FastAPI
-API_BASE_URL = "http://localhost:8000"
+API_BASE_URL = "https://fastapi-deployment-suxs.onrender.com"
 
 # Streamlit UI
 st.title("💬 ReadMyDoc")
@@ -82,7 +82,7 @@ if user_prompt and index_name:
             # Display the result
             if 'response' in result:
                 bot_response = result['response']
-                clean_response = preprocess_text(bot_response)
+                # clean_response = preprocess_text(bot_response)
                 # text_to_speech(clean_response)
                 # st.markdown(result['response'])
             else:
@@ -90,6 +90,7 @@ if user_prompt and index_name:
                 bot_response = "No relevant information found."
             st.session_state.messages.append({"role": "assistant", "content": bot_response})
             st.chat_message("assistant").write(bot_response)
+            text_to_speech(bot_response)
 
         except requests.exceptions.HTTPError as e:
             st.error(f"Error during search: {e}")
