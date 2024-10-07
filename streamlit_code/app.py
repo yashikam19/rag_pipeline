@@ -6,7 +6,7 @@ from app_helper import text_to_speech, preprocess_text
 API_BASE_URL = "https://fastapi-deployment-suxs.onrender.com"
 
 # Streamlit UI
-st.title("💬 ReadMyDoc")
+st.title("📚 ReadMyDoc")
 st.caption("🚀 Powered by FastAPI and Elasticsearch")
 
 # Sidebar instructions and settings
