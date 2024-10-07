@@ -29,7 +29,7 @@ with st.sidebar:
                 "When you upload a PDF document, it will be divided into chunks and indexed for efficient retrieval. "
                 "You can then search the document by querying specific information or topics.")
 
-index_name = "sarvam_v2"
+index_name = "sarvam_v3"
 # PDF Upload and Ingestion Section
 # st.header("Upload a PDF Document")
 uploaded_file = st.file_uploader("Upload a PDF document", type=("pdf"))
