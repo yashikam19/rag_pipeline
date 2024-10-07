@@ -46,7 +46,7 @@ if uploaded_file and index_name:
             try:
                 response = requests.post(ingest_url, files=files)
                 response.raise_for_status()
-                st.success("PDF uploaded and ingested successfully.")
+                st.success("PDF decrypted and encoded successfully.")
             except requests.exceptions.HTTPError as e:
                 st.error(f"Error uploading PDF: {e}")
             except requests.exceptions.RequestException as e:
