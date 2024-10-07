@@ -10,7 +10,7 @@ from langchain_openai import ChatOpenAI
 import os
 
 app = FastAPI()
-topic_index = "topics_v1"
+topic_index = "topics_v2"
 
 # Initialize the ElasticsearchHelper with config file
 es_helper = ElasticsearchHelper()

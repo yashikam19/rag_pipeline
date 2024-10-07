@@ -18,8 +18,10 @@ class GenAnswer:
         try:
             llm = ChatOpenAI(model=self.model,temperature=temperature, default_headers={"Authorization": self.TOKEN})
             prompt_text = """
-                Instruction: You are an educational expert. Your task is to provide a clear and a precise answer to the given query based on the provided context. 
-                - You can include explanations, relevant examples, and illustrations/activities wherever necessary to enrich the understanding of the topic.
+                Instruction: You are an educational expert. Your task is to provide a clear and a precise answer to the given query strictly based on the provided context only. 
+                - Include relevant explanations, examples, and illustrations/activities from the context to enhance understanding.
+                - Ensure the response is comprehensive, adhering closely to the context provided.
+                - Feel free to add further details only when necessary for clarity.
 
                 Context: {context}
 
@@ -40,7 +42,7 @@ class GenAnswer:
     def should_call_vector_db(self, query:str, topics: list) -> bool:
         llm = ChatOpenAI(model=self.model, default_headers={"Authorization": self.TOKEN})
         prompt_text = """
-            Instruction: You are a content specialist. Determine whether the provided query is related to any of the topics in the list below. If the query is directly or indirectly related to any topic, answer "yes". Otherwise, answer "no". Your response should ONLY be "yes" or "no". Do not provide any explanations.            
+            Instruction: You are a content specialist. Determine whether any of the words in the provided query has broad or indirect relation to any of the topics in the list below. If the query is directly or indirectly related to any topic, answer "yes". Otherwise, answer "no". Your response should ONLY be "yes" or "no". Do not provide any explanations.            
             Query: {query}
 
             Topics List: {topics}
