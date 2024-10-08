@@ -1,12 +1,12 @@
 # ReadMyDoc
 
-Welcome to the **RAG** project! This application demonstrates an intelligent document-based question-answering system powered by **FastAPI**, **Streamlit**, and **Elasticsearch**. The system enables efficient document search, PDF parsing & chunking, and even generates practice questions based on user queries.
+This application demonstrates an intelligent document-based question-answering system powered by **FastAPI**, **Streamlit**, and **Elasticsearch**. The system enables efficient document search, PDF parsing & chunking, and even generates practice questions based on user queries.
 
 ### 🌐 [Streamlit Demo App](https://readmydoc.streamlit.app/)
 
-### 📄 [FastAPI Swagger Page (deployed on Render)](https://fastapi-deployment-suxs.onrender.com)
+### 📄 [FastAPI Swagger Page (deployed on Render)](https://fastapi-deployment-suxs.onrender.com/docs)
 
-## 🔍 Key features and techniques
+## 🔍 Key features
 
 * `Elasticsearch` is used as vector database to store, ingest and query documents.
 * `PyPDF2` python library is used for PDF Parsing.
@@ -20,7 +20,7 @@ Welcome to the **RAG** project! This application demonstrates an intelligent doc
 * **Agentic Features**:
   - **Smart Search Agent:** Decides whether to call the vector database based on the query's relevance to precomputed document topics (headings).
   - **Practice Question Agent:** Generates practice questions for specific chapters on request.
-* **Text-to-Speech Integration**: Sarvam's `Text to Speech` API brings generated responses to life with voice output.
+* **Text-to-Speech Integration**: Sarvam's `Text to Speech` API brings the generated responses to life with voice output.
 * **Persistent Document Storage**: Uploaded PDFs are stored in Elasticsearch, so there's no need to re-upload the same file for future queries.
 
 
@@ -41,7 +41,7 @@ Welcome to the **RAG** project! This application demonstrates an intelligent doc
 2. Create and activate a virtual environment:
    ```bash
    python -m venv myenv
-   myenv\Scripts\activate
+   myenv/Scripts/activate
    ```
 3. Install the required dependencies:
    ```bash
