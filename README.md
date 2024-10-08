@@ -31,7 +31,7 @@ Welcome to the **RAG** project! This application demonstrates an intelligent doc
 1. **Python**: Ensure Python is installed. You can download it from [here](https://www.python.org/downloads/).
 2. **Elasticsearch**: You'll need an Elasticsearch instance which can be set up from [here](https://www.elastic.co/cloud)
 
-### Setup Python the environment
+### Setup Python environment
 
 1. Clone the repository:
    ```bash
@@ -64,20 +64,33 @@ Welcome to the **RAG** project! This application demonstrates an intelligent doc
 Give some practice questions on chapter Sound
 
 **Answer:**
+![WhatsApp Image 2024-10-08 at 18 53 13_6247c37b](https://github.com/user-attachments/assets/931096f7-b598-4527-81b6-ff092aa32f1f)
 
 **Question:**
 Give relative speed of sound in different media
 
 **Answer:**
+- The response includes exact numerical values of sound speeds in different media, quoted from the document. 
+- It also provides key observations instead of directly stating the numbers.
+![WhatsApp Image 2024-10-08 at 18 47 30_b08775e0](https://github.com/user-attachments/assets/527d05db-5942-4e09-a5f8-b67f5f777e8d)
+![WhatsApp Image 2024-10-08 at 18 47 30_69cfbe2d](https://github.com/user-attachments/assets/b4cd9abc-6649-4705-bbcd-86ec2123f5b3)
 
 **Question:**
 What are laws of chemical combination of atoms.
 
 **Answer:**
+- Does not provide response to out of context queries
+![WhatsApp Image 2024-10-08 at 18 47 28_04c13faf](https://github.com/user-attachments/assets/8ff198be-47b5-4c79-9011-ab043145f86e)
 
+**Question:**
+Explain the concept of reflection of sound.
 
+**Answer:**
+- The response includes a detailed explanation of the topic, supported by relevant examples from the text.
+- It also includes activity to help clarify the concept, ensuring a deeper understanding of the topic.
+![WhatsApp Image 2024-10-08 at 18 47 28_2483c257](https://github.com/user-attachments/assets/a15d56db-e835-4b1a-95b5-6549a0ceecf1)
 
-## 📘 Example Data Used
+## 📘 Dataset Used
 
 * NCERT Class 9 Sound Chapter PDF: https://drive.google.com/file/d/17jqGIlgT5yJVfIeM_-4yCMFO5Ojd8H_9/view
 * NCERT Class 9 Exemplar Practice Question PDFs: https://ncert.nic.in/exemplar-problems.php?ln=en
