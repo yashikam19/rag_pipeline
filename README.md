@@ -1,43 +1,63 @@
+# ReadMyDoc
 
-# RAG Pipeline
+Welcome to the **RAG** project! This application demonstrates an intelligent document-based question-answering system powered by **FastAPI**, **Streamlit**, and **Elasticsearch**. The system enables efficient document search, PDF parsing & chunking, and even generates practice questions based on user queries.
 
-## Demo App
+### 🌐 [Streamlit Demo App](https://readmydoc.streamlit.app/)
 
-(https://st-lc-rag.streamlit.app/)
-
-## FastAPI Swagger Page (deployed on render)
-https://fastapi-deployment-suxs.onrender.com
+### 📄 [FastAPI Swagger Page (deployed on Render)](https://fastapi-deployment-suxs.onrender.com)
 
 ## Key features and techniques
 
-* `Elasticsearch` is used as vector database to store, ingest and query documents.
-* `PyPDF2` is used for PDF Parsing.
-* `Recursive Character Text Splitting` is used for Document chunking. A default input is set to chunk size as 2000 and chunk overlap as 250.
-* For efficient retrieval strategy, `hybrid search` using elasticsearch is employed. It uses `content` and `heading` fields for multi-matching along with user query. The vector search part computes the similarity score (co-sine similarity) between the `user query embeddings` and the `summaryVector` embedding fields. Top 10 search results are returned as a result
-* An agent is employed to compute the heading and summary of each of the chunks. The corresponding vector embeddings are built using google's `text-embedding-004` model.
-* There are 2 agentic features employed that can perform smart actions based on user query:
-  - There is an agent that can decide whether to call the vector db or not. This decision is made based on whether the user query is directly related to the list of topics given. This list is formulated by embedding the individual chunk headings calculated above.
-  - There is another agent that can provide practice questions for a particular chapter when asked by the user.
+* **Elasticsearch** is used as vector database to store, ingest and query documents.
+* **PyPDF2** is used for PDF Parsing.
+* **Recursive Character Text Splitting** is used for Document chunking. Default inputs are:
+  - **Chunk size:** 2000 characters
+  - **Chunk overlap:** 250 characters
+* **Hybrid Search** using Elasticsearch combines vector search with traditional multi-match text-based search based on `content` and `heading` fields.
+  - The search leverages cosine similarity between **user query embeddings** and **document embeddings** (`summaryVector`).
+  - Top 10 results are retrieved and presented.
+* An LLM is utilized to compute the heading and summary of each of the chunks. **Google's `text-embedding-004` model** generates the `contentVector` and `summaryVector` embeddings
+* **Agentic Features**:
+  - **Smart Search Agent:** Decides whether to call the vector database based on the query's relevance to precomputed document topics (headings).
+  - **Practice Question Agent:** Generates practice questions for specific chapters on request.
 * Sarvam's `Text to Speech` API is used to give voice to the response generated.
-* You don't have to upload the same PDF again and again, as it gets stored in the elasticsearch index once uploaded.
+* **Text-to-Speech Integration**: Sarvam's `Text to Speech` API brings generated responses to life with voice output.
+* **Persistent Document Storage**: Uploaded PDFs are stored in Elasticsearch, so there's no need to re-upload the same file for future queries.
 
-## Quickstart
 
-### Setup Python Virtual environment (for Windows)
+## Quickstart Guide
 
-```bash
-python -m venv myenv
-myenv\Scripts\activate
-pip install -r requirements.txt
-```
+### 🛠️ Prerequisites
 
-### Setup .env file with API tokens needed.
+1. **Python**: Ensure Python is installed. You can download it from [here](https://www.python.org/downloads/).
+2. **Elasticsearch**: You'll need an Elasticsearch instance which can be set up from [here](https://www.elastic.co/cloud)
 
-```
-OPENAI_API_KEY="<Put your token here>"
-ES_URL="<Your Elasticsearch URL>"
-ES_API="<Your Elasticsearch Authorisation>"
-```
+### Setup Python the environment
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yashikam19/rag_pipeline.git
+   cd rag_pipeline
+   ```
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv myenv
+   myenv\Scripts\activate
+   ```
+3. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Set up the `.env` file with your API keys:
+   ```bash
+   OPENAI_API_KEY="<Put your token here>"
+   ES_URL="<Your Elasticsearch URL>"
+   ES_API="<Your Elasticsearch Authorisation>"
+   ```
+5. Run the app:
+   ```bash
+   streamlit run app.py
+   ```
 
 ## Example Queries for Streamlit App
 
@@ -58,7 +78,7 @@ What are laws of chemical combination of atoms.
 
 
 
-## Example Data Used
+##📘 Example Data Used
 
 * NCERT Class 9 Sound Chapter PDF: https://drive.google.com/file/d/17jqGIlgT5yJVfIeM_-4yCMFO5Ojd8H_9/view
-* NCERT Class 9 Exemplar Practice Question PDFs: 
+* NCERT Class 9 Exemplar Practice Question PDFs: https://ncert.nic.in/exemplar-problems.php?ln=en
