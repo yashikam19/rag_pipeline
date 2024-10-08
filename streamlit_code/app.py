@@ -3,7 +3,7 @@ import requests
 from app_helper import text_to_speech, preprocess_text
 
 # Base URL for FastAPI
-API_BASE_URL = "http://localhost:8000"
+API_BASE_URL = "https://fastapi-deployment-suxs.onrender.com"
 
 # Streamlit UI
 st.title("📚 ReadMyDoc")
