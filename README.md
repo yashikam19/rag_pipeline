@@ -6,26 +6,25 @@ Welcome to the **RAG** project! This application demonstrates an intelligent doc
 
 ### 📄 [FastAPI Swagger Page (deployed on Render)](https://fastapi-deployment-suxs.onrender.com)
 
-## Key features and techniques
+## 🔍 Key features and techniques
 
-* **Elasticsearch** is used as vector database to store, ingest and query documents.
-* **PyPDF2** is used for PDF Parsing.
-* **Recursive Character Text Splitting** is used for Document chunking. Default inputs are:
+* `Elasticsearch` is used as vector database to store, ingest and query documents.
+* `PyPDF2` python library is used for PDF Parsing.
+* Langchain's `Recursive Character Text Splitting` is used for document chunking. Default inputs are:
   - **Chunk size:** 2000 characters
   - **Chunk overlap:** 250 characters
-* **Hybrid Search** using Elasticsearch combines vector search with traditional multi-match text-based search based on `content` and `heading` fields.
+* `Hybrid Search` using Elasticsearch combines vector search with traditional multi-match text-based search based on `content` and `heading` fields.
   - The search leverages cosine similarity between **user query embeddings** and **document embeddings** (`summaryVector`).
   - Top 10 results are retrieved and presented.
 * An LLM is utilized to compute the heading and summary of each of the chunks. **Google's `text-embedding-004` model** generates the `contentVector` and `summaryVector` embeddings
 * **Agentic Features**:
   - **Smart Search Agent:** Decides whether to call the vector database based on the query's relevance to precomputed document topics (headings).
   - **Practice Question Agent:** Generates practice questions for specific chapters on request.
-* Sarvam's `Text to Speech` API is used to give voice to the response generated.
 * **Text-to-Speech Integration**: Sarvam's `Text to Speech` API brings generated responses to life with voice output.
 * **Persistent Document Storage**: Uploaded PDFs are stored in Elasticsearch, so there's no need to re-upload the same file for future queries.
 
 
-## Quickstart Guide
+## ⚡ Quickstart Guide
 
 ### 🛠️ Prerequisites
 
@@ -59,7 +58,7 @@ Welcome to the **RAG** project! This application demonstrates an intelligent doc
    streamlit run app.py
    ```
 
-## Example Queries for Streamlit App
+## 🧠 Example Queries for Streamlit App
 
 **Question:**
 Give some practice questions on chapter Sound
@@ -78,7 +77,7 @@ What are laws of chemical combination of atoms.
 
 
 
-##📘 Example Data Used
+## 📘 Example Data Used
 
 * NCERT Class 9 Sound Chapter PDF: https://drive.google.com/file/d/17jqGIlgT5yJVfIeM_-4yCMFO5Ojd8H_9/view
 * NCERT Class 9 Exemplar Practice Question PDFs: https://ncert.nic.in/exemplar-problems.php?ln=en
