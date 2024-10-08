@@ -3,7 +3,7 @@ import requests
 from app_helper import text_to_speech, preprocess_text
 
 # Base URL for FastAPI
-API_BASE_URL = "https://fastapi-deployment-suxs.onrender.com"
+API_BASE_URL = "http://localhost:8000"
 
 # Streamlit UI
 st.title("📚 ReadMyDoc")
@@ -11,22 +11,27 @@ st.caption("🚀 Powered by FastAPI and Elasticsearch")
 
 # Sidebar instructions and settings
 with st.sidebar:
-    st.markdown("## How to use\n"
-                "1. Upload a PDF Document.\n"
-                "2. The document will be processed and indexed.\n"
-                "3. You can then ask questions based on the indexed document.")
+    st.markdown("## How to Use\n"
+            "1. **Upload Your PDF Documents**: You can upload one or multiple PDFs to get started.\n"
+            "2. **Adjust Settings**: Configure the response temperature and enable sound playback to enhance your learning experience.\n"
+            "3. **Ask Questions**: After uploading, you can ask questions related to the documents.")
 
     st.divider()
     st.header("Settings")
 
+    play_sound = st.checkbox("🔊 Enable Sound for Responses", 
+                             help="Check this box to hear audio playback of the responses. "
+                                  "Perfect for auditory learners who want to listen while they learn!")
     # Adding a slider for temperature (for example purposes, you can use it in querying)
-    temperature = st.slider("Response Temperature", 0.0, 1.0, 0.5,
-                            help="Adjust the creativity or precision of the generated answers. "
-                                 "Higher values make the system more creative.")
+    temperature = st.slider("🌡️ Creativity Level",
+                             0.0, 1.0, 0.5,
+                             help="Adjust the creativity of the generated answers. "
+                                  "Higher values (up to 1.0) make the responses more creative and varied, "
+                                  "while lower values (down to 0.0) keep them more focused and precise.")
 
     st.divider()
     st.markdown("## How does it work?\n"
-                "When you upload a PDF document, it will be divided into chunks and indexed for efficient retrieval. "
+                "When you upload a PDF document, it will be divided into chunks and indexed for efficient retrieval.\n"
                 "You can then search the document by querying specific information or topics.")
 
 index_name = "sarvam_v3"
@@ -46,7 +51,7 @@ if uploaded_file and index_name:
             try:
                 response = requests.post(ingest_url, files=files)
                 response.raise_for_status()
-                st.success("PDF decrypted and encoded successfully.")
+                st.success("PDF uploaded and ingested successfully.")
             except requests.exceptions.HTTPError as e:
                 st.error(f"Error uploading PDF: {e}")
             except requests.exceptions.RequestException as e:
@@ -82,16 +87,23 @@ if user_prompt and index_name:
             # Display the result
             if 'response' in result:
                 bot_response = result['response']
-                # clean_response = preprocess_text(bot_response)
-                # text_to_speech(clean_response)
-                # st.markdown(result['response'])
+                if isinstance(bot_response, str) and bot_response.startswith('http'):
+                    url = bot_response
+                    bot_response = "Ready to test your knowledge? Here are some practice questions to help you excel! Remember, learning is a journey!"
+                    st.chat_message("assistant").write(bot_response)
+                    # Embed the URL
+                    st.markdown(f'<iframe src="{url}" width="700" height="500"></iframe>', unsafe_allow_html=True)
+                else:
+                    # Display the text response
+                    st.chat_message("assistant").write(bot_response)
             else:
                 # st.write("No relevant information found.")
                 bot_response = "No relevant information found."
-            st.session_state.messages.append({"role": "assistant", "content": bot_response})
-            st.chat_message("assistant").write(bot_response)
-            text_to_speech(bot_response)
+                st.chat_message("assistant").write(bot_response)
 
+            st.session_state.messages.append({"role": "assistant", "content": bot_response})
+            if play_sound:
+                text_to_speech(bot_response)
         except requests.exceptions.HTTPError as e:
             st.error(f"Error during search: {e}")
         except requests.exceptions.RequestException as e:

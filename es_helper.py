@@ -93,7 +93,7 @@ class ElasticsearchHelper:
         genai.configure(api_key=GOOGLE_API_KEY)
         result = genai.embed_content(model="models/text-embedding-004", content=text)
         return result['embedding']
-
+    
     def index_chunk(self, chunks, index_name):
         bulk_data = []
         topics = []
@@ -200,7 +200,7 @@ class ElasticsearchHelper:
             return response
         except Exception as e:
             raise RuntimeError(f"Error indexing document: {str(e)}")
-        
+      
     def get_topics(self, index_name: str):
         try:
             # Query Elasticsearch to retrieve all topics from the topics index

@@ -6,8 +6,7 @@ from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import JSONResponse
 import tempfile
 from helper import GenAnswer
-from langchain_openai import ChatOpenAI
-import os
+from helper import get_closest_url
 
 app = FastAPI()
 topic_index = "topics_v2"
@@ -103,6 +102,9 @@ def get_answer_with_agent(index_name: str, query: str, temperature: float = 0.5)
         gen_answer = GenAnswer()
         if not gen_answer.should_call_vector_db(query, retrieved_topics):
             response = gen_answer.generate_response(query)
+
+        elif gen_answer.is_practice(query):
+            response = get_closest_url(query)
 
         else:
             resp = es_helper.hybrid_search(index_name=index_name, user_query=query, user_query_vector=user_query_vector)
