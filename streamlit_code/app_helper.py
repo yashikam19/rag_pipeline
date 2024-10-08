@@ -5,6 +5,7 @@ import base64
 import requests
 import io
 from pydub import AudioSegment
+import time
 
 def text_to_speech(user_input):
     url = "https://api.sarvam.ai/text-to-speech"
@@ -14,7 +15,7 @@ def text_to_speech(user_input):
     }
 
     # Split user input into chunks of 500 characters
-    chunk_size = 500
+    chunk_size = 400
     chunks = [user_input[i:i + chunk_size] for i in range(0, len(user_input), chunk_size)]
 
     audio_segments = []
@@ -23,16 +24,17 @@ def text_to_speech(user_input):
         # Prepare the payload with user input
         payload = {
             "inputs": [chunk],
-            "target_language_code": "hi-IN",
+            "target_language_code": "en-IN",
             "speaker": "arvind",
             "pitch": 0,
-            "pace": 1.17,
+            "pace": 1.1,
             "loudness": 1.5,
             "speech_sample_rate": 8000,
             "enable_preprocessing": True,
             "model": "bulbul:v1"
         }
-        
+        print(chunk)
+        print("--"*50)
         # Make a POST request to the API
         response = requests.post(url, json=payload, headers=headers)
 
@@ -85,4 +87,4 @@ def preprocess_text(text: str) -> str:
     text = re.sub(r'\*\*(.*?)\*\*', r'\1', text)
     # Remove Markdown headers (### Header)
     text = re.sub(r'###\s*', '', text)
-    return text
+    return text.replace('\n', ' ')

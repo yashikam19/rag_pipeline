@@ -103,7 +103,8 @@ if user_prompt and index_name:
 
             st.session_state.messages.append({"role": "assistant", "content": bot_response})
             if play_sound:
-                text_to_speech(bot_response)
+                clean_response = preprocess_text(bot_response)
+                text_to_speech(clean_response)
         except requests.exceptions.HTTPError as e:
             st.error(f"Error during search: {e}")
         except requests.exceptions.RequestException as e:
