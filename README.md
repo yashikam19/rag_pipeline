@@ -4,7 +4,7 @@ This application demonstrates an intelligent document-based question-answering s
 
 ### 🌐 [Streamlit Demo App](https://readmydoc.streamlit.app/)
 
-### 📄 [FastAPI Swagger Page (deployed on Render)](https://fastapi-deployment-suxs.onrender.com/docs)
+### 📄 [FastAPI Swagger Page (deployed on Render)](https://api-doc-rag.onrender.com/docs)
 
 ## 🔍 Key features
 
@@ -92,5 +92,5 @@ Explain the concept of reflection of sound.
 
 ## 📘 Dataset Used
 
-* NCERT Class 9 Sound Chapter PDF: https://drive.google.com/file/d/17jqGIlgT5yJVfIeM_-4yCMFO5Ojd8H_9/view
-* NCERT Class 9 Exemplar Practice Question PDFs: https://ncert.nic.in/exemplar-problems.php?ln=en
+* https://crustdata.notion.site/Crustdata-Discovery-And-Enrichment-API-c66d5236e8ea40df8af114f6d447ab48#3315bbdfa0054a2aa440e98bdec3ff90
+* https://crustdata.notion.site/Crustdata-Dataset-API-Detailed-Examples-b83bd0f1ec09452bb0c2cac811bba88c#aa49c8b2a8ba4a05a49ca380fed4b95b
